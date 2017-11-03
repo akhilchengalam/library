@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Easy Books{% endblock %}
+
+{% block contents %}
+
+    {% if book %}
+        <div class="row" style="padding-top: 30px; padding-bottom: 0; color:darkblue;">
+            <div class="col-sm-5">
+                <div style="overflow:hidden" >
+                    <img src="{{ book.photo }}" alt="IMAGE" style="display: block;margin: auto;max-width: 100%;
+                                                        height: auto; padding-top: 200px"/>
+                </div>
+            </div><br /><br/>
+            <div class="col-sm-6">
+                <h1 style="font-weight: bolder; color: #000000">{{ book.name }}</h1><br />
+                <p><h6><b>Category</b> : <i>{{ book.catagory }}</i> </h6></p>
+                <p><h6><b>Published on</b> : {{ book.published_date }}</h6> </p>
+                <p><h6><b>Author </b>: {{ book.author }}</h6> </p><br />
+                {% autoescape off %}
+                <div style="text-align: justify;">
+                    <p style="font-size: 12px">
+                        <i>{{ book.description }}</i>
+                    </p>
+                </div>
+                {% endautoescape %}
+                {% if request.user.payed %}
+                    <a href="{{ book.pdf.url }}" download={{ book.name }}>
+                        <center>
+                            <div class="btn btn-success">Download PDF</div>
+                        </center></a>
+                {% else %}
+                    <a href="{% url 'charge' %}">
+                        <div class="btn btn-info">Please Complete the payment  to Download the Book</div>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block contents %}
+    <br /><br /><br /><br />
+<div class="bimg w3-display-container ">
+    <div class="w3-display-middle">
+        <h2 class="w3-jumbo w3-animate-top">Easy Books</h2>
+    </div>
+</div>
+<br /><br /><br /><br />
+<div class="container" align="center">
+    <h4>
+        You are about to complete your registration.
+    </h4>
+</div>
+
+<div align="center">
+    <a href="{% url 'charge' %}">
+        <div class="btn btn-success">Proceed to Pay</div>
+    </a>
+</div>
+<br /><br />
+{#<div align="center">#}
+{#    <a href="{% url 'home' %}">#}
+{#        <div class="btn btn-success">Go to Home</div>#}
+{#    </a>#}
+{#</div>#}
+{% endblock %}

@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% block title %}Payment{% endblock %}
+
+{% block contents %}
+
+
+    <style>
+        .StripeElement {
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+            box-shadow: 0 1px 3px 0 #e6ebf1;
+            -webkit-transition: box-shadow 150ms ease;
+            transition: box-shadow 150ms ease;
+        }
+
+        .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
+        }
+
+        .StripeElement--invalid {
+            border-color: #fa755a;
+        }
+
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
+        }
+
+        .pay{
+            align:left;
+            padding-left: 20px;
+        }
+    </style>
+
+    <!---------------------------------------------------------------------->
+    <!--------------------------Payment Form-------------------------------->
+    <br /><br /><br /><br />
+    <div class="container" align="center">
+        <div class="thumbnail" style="height:350px; width: 500px">
+            <div class="">
+                <i><h3 align="center" style="color: #000000; font-weight: bold">Complete Your Payment</h3></i>
+            </div><br /><br />
+
+            <form method="post" id="payment-form" name="payment-form" >
+                {% csrf_token %}
+                <div class="card-errors" id="error" style="color:red"></div>
+
+                <div class="form-row pay">
+                    <label>
+                        <span>Card number</span>
+                        <input name="number" type="text" size="20" data-stripe="number">
+                    </label>
+                </div><br/>
+
+                <div class="form-row pay">
+                    <label>
+                        <span>Expiration (MM/YY)</span>
+                        <input name="exp_month" type="text" size="2" data-stripe="exp_month">
+                    </label>
+                    <span> / </span>
+                    <input name="exp_year" type="text" size="2" data-stripe="exp_year">
+                </div><br/>
+
+                <div class="form-row pay">
+                    <label>
+                        <span>CVV</span>
+                        <input name="cvv" type="text" size="4" data-stripe="cvv">
+                    </label>
+                </div><br/>
+
+                <input type="submit" class="submit btn btn-success" value="Submit Payment">
+            </form><br />
+
+        </div>
+    </div>
+
+    <!----------------------------------------------------------------------->
+    <!----------------------------------------------------------------------->
+
+
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script type="text/javascript">
+
+        Stripe.setPublishableKey('pk_test_8B2Yme61FppADsm9Zj9O1QXk');
+        var stripeResponseHandler = function(status, response) {
+            var $form = $('#payment-form');
+
+            if (response.error) {
+                document.getElementById("error").innerHTML=response.error.message;
+                $form.find('.payment-errors').text(response.error.message);
+                $form.find('.payment-errors').addClass('alert');
+                $form.find('.payment-errors').addClass('alert-error');
+                $form.find('button').prop('disabled', false);
+            } else {
+                var token = response.id;
+                $form.append($('<input type="hidden" name="stripe_token" />').val(token));
+                $form.get(0).submit();
+            }
+        };
+
+        jQuery(function($) {
+            $('#payment-form').submit(function(e) {
+                var $form = $(this);
+
+                // Disable the submit button to prevent repeated clicks
+                $form.find('button').prop('disabled', true);
+
+                Stripe.createToken($form, stripeResponseHandler);
+                return false;
+            });
+        });
+
+    </script>
+{% endblock %}
+

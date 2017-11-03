@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Signup{% endblock %}
+
+{% block contents %}
+    <br /><br /><br />
+    <div class="container" style="padding-top: 30px; padding-left: 100px">
+        <div class="col-sm-4">
+            <h2>Sign up Here</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <p>
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <p style="color: red">{{ error }}</p>
+                        {% endfor %}
+                    </p>
+                {% endfor %}
+                <button type="submit" class="btn btn-info" style="width: 195px">Sign up</button>
+            </form>
+        </div><br /><br /><br />
+        <div class="col-sm-4">
+            <h5 style="color: #000000; font-weight: bolder" align="center">To become a registered user, you need to pay $50. After submitting the signup form,
+                you will be redirected to the payment gateway.</h5>
+        </div>
+    </div>
+{% endblock %}
