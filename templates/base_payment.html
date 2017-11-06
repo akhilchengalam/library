@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>{% block title %}{% endblock %}</title>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+    <link rel="shortcut icon"  href="/img/files/favicon.ico"/>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/eldarion-ajax@0.16.0/js/eldarion-ajax.min.js"></script>
+
+</head>
+<body>
+
+<style>
+    .footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  text-align: center;
+  height: 50px;
+}
+    body {
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+</style>
+
+<!-------------------------NAVBAR STARTS------------------------------>
+<nav class="navbar navbar-inverse navbar-fixed-top hover">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'home' %}">Easy Books</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <form class="navbar-form navbar-left" action="{% url 'search' %}/"method="get" >
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Search" name="key">
+                </div>
+                <button type="submit" class="btn btn-default">
+                    <i class="glyphicon glyphicon-search"></i>
+                </button>
+            </form>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if request.user.is_authenticated %}
+                <li><a><i>Welcome</i>
+                    <span style="font-weight:bolder; color:white;">{{ request.user.username }}</span></a>
+                </li>
+{#                <h1>{{ profile }}</h1>#}
+{#                {% if not request.profile.payed %}#}
+{#                    <li><a href="{% url 'charge' %}"><span class="glyphicon glyphicon-usd"></span>Payment</a></li>#}
+{#                {% endif %}#}
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'signup' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!--------------------------END NAVBAR------------------------------->
+
+{% block contents %} {% endblock %}
+<div class="container-fluid">
+    <div class="mag-inner">
+        <div class="col-md-12">
+
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+<!-------------------------- Footer ---------------------->
+
+<br />
+<footer class="footer" >
+    <h6 align="center"><span style="font-weight:bolder; color:white;">Easy Books</span></h6>
+</footer>
+
+<!-------------------------End Footer--------------------->
+</body>
+</html>
