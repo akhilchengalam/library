@@ -38,18 +38,23 @@
   min-height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
 }
+    .scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
 </style>
 
 <!-------------------------NAVBAR STARTS------------------------------>
 <nav class="navbar navbar-inverse navbar-fixed-top hover">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'home' %}">Easy Books</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><b style="color: #ffffff">Easy <span style="color: red">Books</span></b></a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Categories <span class="caret"></span></a>
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu scrollable-menu ">
                     {% for list in categories %}
                         <li class="active">
                             <a href="{% url 'catagory' list.id %}"><i>{{ list.name }}</i></a>
