@@ -24,7 +24,7 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', 'easybooksonline.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', 'easybooksonline.herokuapp.com','http://akhilanil.pythonanywhere.com/']
 
 
 # Application definition
