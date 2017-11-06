@@ -38,7 +38,7 @@ class CatagoryView(generic.ListView):
     def get_queryset(self):
         try:
             pk = self.kwargs.get('pk')
-            q = self.model._default_manager.get(pk=int(pk))
+            q = self.model.objects.get(pk=int(pk))
             return q.book_set.all()
         except ObjectDoesNotExist:       # AttributeError, DoesNotExist
             raise Http404
@@ -84,7 +84,6 @@ class Searchview(generic.ListView):
 
     def get_context_data(self):
 
-        # Call the base implementation first to get a context
         context = super().get_context_data()
         cat_list = Catagory.objects.order_by('name')
         context['categories'] = cat_list

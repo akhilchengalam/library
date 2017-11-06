@@ -59,8 +59,6 @@ def my_handler(sender, instance,  **kwargs):
     if instance.collected == False:
         r = requests.get(url="https://www.googleapis.com/books/v1/volumes/"+instance.bookid)
         data = r.json()
-        # import pdb
-        # pdb.set_trace()
         if Catagory.objects.filter(name=data["volumeInfo"]["categories"][0]).exists():
             category=Catagory.objects.get(name=data["volumeInfo"]["categories"][0])
         else:
