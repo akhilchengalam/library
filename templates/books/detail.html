@@ -23,7 +23,7 @@
                     </p>
                 </div>
                 {% endautoescape %}
-                {% if request.user.payed %}
+                {% if request.user.is_authenticated %}
                     <a href="{{ book.pdf.url }}" download={{ book.name }}>
                         <center>
                             <div class="btn btn-success">Download PDF</div>
