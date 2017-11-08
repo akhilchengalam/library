@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from allauth.account.signals import user_logged_in
 from library import settings
 
 
@@ -28,7 +29,7 @@ class Tokens(models.Model):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         self.stripe = stripe
 
-    def charge(self, price_in_cents, number, exp_month, exp_year, cvc, token):
+    def charge(self, price_in_cents, email, number, exp_month, exp_year, cvc, token):
         if self.charge_id:
             return False, Exception(message="Already charged.")
         try:
@@ -39,7 +40,6 @@ class Tokens(models.Model):
                 description='Your Registration is successfull!')
 
             self.charge_id = response.id
-
         except self.stripe.CardError:
             return False, {'message': 'failed'}
 
@@ -55,3 +55,12 @@ def create_user_profile(sender,instance,created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender,instance, **kwargs):
     instance.profile.save()
+
+
+def logged_in(sender, **kwargs):
+    user = kwargs['user']
+    request = kwargs['request']
+    request.session['username'] = 'username'
+
+# Connect django-allauth Signals
+user_logged_in.connect(logged_in)
