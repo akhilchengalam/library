@@ -37,7 +37,7 @@
     <!--------------------------Payment Form-------------------------------->
     <br /><br /><br /><br />
     <div class="container" align="center">
-        <div class="thumbnail" style="height:350px; width: 500px">
+        <div class="thumbnail" style="height:400px; width: 500px">
             <div class="">
                 <i><h3 align="center" style="color: #000000; font-weight: bold">Complete Your Payment</h3></i>
             </div><br /><br />
@@ -45,6 +45,13 @@
             <form method="post" id="payment-form" name="payment-form" >
                 {% csrf_token %}
                 <div class="card-errors" id="error" style="color:red"></div>
+
+                <div class="form-row pay">
+                    <label>
+                        <span>Email     </span>
+                        <input name="email" type="email" size="20" data-stripe="email">
+                    </label>
+                </div><br/>
 
                 <div class="form-row pay">
                     <label>

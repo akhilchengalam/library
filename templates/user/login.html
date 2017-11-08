@@ -1,20 +1,25 @@
-{% extends 'base.html' %}
+{% extends 'base_payment.html' %}
 {% block title %}Login{% endblock %}
 
 {% block contents %}
-    <br /><br /><br />
-    <div class="container" align="center">
+    <br /><br /><br /><br /><br />
+    <div class="container thumbnail" align="center" style="width: 450px; height: auto">
 
         <div >
-            <h2>Login</h2>
+            <h2 style="font-weight: bolder">Login</h2>
             <form method="post">
-                <fieldset>
+
+                    <div style="color: red">{{ form.non_field_errors|striptags }}</div>
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <br /><label>Usernname</label>
+                    {{ form.username }}
+                    <br /><br /><label>Password&nbsp;&nbsp;</label>
+                    {{ form.password }}
                     <br />
-                    <br /><br />
+                    <br />
+
                     <button class="btn btn-info" type="submit" style="width:300px">Login</button>
-                </fieldset>
+
                 <br />
                 <br />
             </form>

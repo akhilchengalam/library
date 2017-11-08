@@ -50,9 +50,11 @@ class ChargeView(StripeMixin, generic.FormView):
 
     def post(self, request):
         form = self.form_class(request.POST)
+        # import pdb
+        # pdb.set_trace()
         if (form.is_valid()):
-            username = request.session['username']
-            q1 = User.objects.get(username=username)
+            email = form.cleaned_data.get('email')
+            q1 = User.objects.get(email=email)
             q = Profile.objects.get(user_id=q1.id)
             q.payed = True
             q.save()

@@ -37,19 +37,25 @@
   padding-bottom: 6rem;
   min-height: 100%;
   font-family: "Helvetica Neue", Arial, sans-serif;
+  background-image: url("/img/img/bg.png");
 }
     .scrollable-menu {
     height: auto;
     max-height: 200px;
     overflow-x: hidden;
 }
+    .classWithShadow{
+         -moz-box-shadow:    1px 1px 2px grey, 0 0 25px lightgrey;
+         -webkit-box-shadow: 1px 1px 2px grey, 0 0 25px lightgrey;
+         box-shadow:         1px 1px 2px grey, 0 0 25px lightgrey;
+       }
 </style>
 
 <!-------------------------NAVBAR STARTS------------------------------>
 <nav class="navbar navbar-inverse navbar-fixed-top hover">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'home' %}"><b style="color: #ffffff">Easy <span style="color: red">Books</span></b></a>
+            <a class="navbar-brand" href="{% url 'home' %}"><b style="color: #ffffff"><span class="glyphicon glyphicon-book"></span> Easy <span style="color: red">Books</span></b></a>
         </div>
         <ul class="nav navbar-nav">
             <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
@@ -93,15 +99,6 @@
 <!--------------------------END NAVBAR------------------------------->
 
 {% block contents %} {% endblock %}
-<div class="container-fluid">
-    <div class="mag-inner">
-        <div class="col-md-12">
-
-        </div>
-
-        <div class="clearfix"></div>
-    </div>
-</div>
 
 <!-------------------------- Footer ---------------------->
 
@@ -111,5 +108,9 @@
 </footer>
 
 <!-------------------------End Footer--------------------->
+
+<script>
+    $(".thumbnail").hover(function(){ $(this).toggleClass('classWithShadow');} );
+</script>
 </body>
 </html>
