@@ -29,7 +29,7 @@ class Tokens(models.Model):
         stripe.api_key = settings.STRIPE_SECRET_KEY
         self.stripe = stripe
 
-    def charge(self, price_in_cents, email, number, exp_month, exp_year, cvc, token):
+    def charge(self, price_in_cents, email ,number, exp_month, exp_year, cvc, token):
         if self.charge_id:
             return False, Exception(message="Already charged.")
         try:
