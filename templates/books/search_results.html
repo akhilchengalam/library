@@ -13,26 +13,26 @@
             {% if search_books %}
                 {% for item in search_books %}
                     <div class="col-sm-6 col-md-3" style="padding-top: 20px">
-                    <div class=" img-thumbnail" style="height: 280px; width: 200px">
-                        <a href="{% url 'detail' item.id %}"><img src="{{ item.photo }}" alt="IMAGE" style="display: block;margin: auto;max-width: 70%;
+                        <div class=" img-thumbnail thumbnail" style="height: 300px; width: 200px;">
+                            <a href="{% url 'detail' item.id %}"><img src="{{ item.photo }}" alt="IMAGE" style="display: block;margin: auto;max-width: 100%;
                                                     height: auto;"/></a>
-                        <div class="caption" align="center">
-                            <h4><a href="{% url 'detail' item.id %}">{{ item.name }}</a></h4>
-                            <div class="date">
-                                <p><h6>{{ item.author }} </h6></p>
+                            <div class="caption" align="center">
+                                <h5 style="font-weight: bold"><a href="{% url 'detail' item.id %}">{{ item.name }}</a></h5>
+                                <div class="date">
+                                    <p><i style="font-size: 12px">{{ item.author }}</i></p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
                 {% endfor %}
             {% else %}
                 NO RESULTS AVAILABLE
             {% endif %}
 
-    </div>
+        </div>
 
-    <!------------------CONTENTS END------------------------------>
+        <!------------------CONTENTS END------------------------------>
 
     </div> <!--container-->
 

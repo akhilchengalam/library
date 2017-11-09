@@ -44,10 +44,10 @@
 <nav class="navbar navbar-inverse navbar-fixed-top hover">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{% url 'home' %}">Easy Books</a>
+            <a class="navbar-brand" href="{% url 'home' %}"><b style="color: #ffffff"><span class="glyphicon glyphicon-book"></span> Easy <span style="color: red">Books</span></b></a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'home' %}"><span class="glyphicon glyphicon-home"></span>Home</a></li>
             <form class="navbar-form navbar-left" action="{% url 'search' %}/"method="get" >
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="Search" name="key">
