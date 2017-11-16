@@ -15,14 +15,11 @@ class Home(generic.ListView):
     queryset = Book.objects.all().order_by('-published_date')
     paginate_by = 8
 
-
     def get_context_data(self, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
         cat_list = Catagory.objects.order_by('name')
         context['categories'] = cat_list
         return context
-
-
 
 
 class CatagoryView(generic.ListView):
@@ -34,7 +31,6 @@ class CatagoryView(generic.ListView):
     context_object_name = 'catagory'
     paginate_by = 8
 
-
     def get_queryset(self):
         try:
             pk = self.kwargs.get('pk')
@@ -42,7 +38,6 @@ class CatagoryView(generic.ListView):
             return q.book_set.all()
         except ObjectDoesNotExist:       # AttributeError, DoesNotExist
             raise Http404
-
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
