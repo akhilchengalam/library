@@ -18,7 +18,7 @@
                         <a href="{% url 'detail' item.id %}"><img src="{{ item.photo }}" alt="IMAGE" style="display: block;margin: auto;max-width: 100%;
                                                     height: auto;"/></a>
                         <div class="caption" align="center">
-                            <h5><b><a href="{% url 'detail' item.id %}">{{ item.name }}</a></b></h5>
+                            <h5><b><a href="{% url 'detail' item.id %}" style="text-decoration:none">{{ item.name }}</a></b></h5>
                             <div class="date">
                                 <p style="font-size: 12px"><i>{{ item.author }}</i> </p>
                             </div>

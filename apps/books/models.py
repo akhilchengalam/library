@@ -68,6 +68,3 @@ def my_handler(sender, instance,  **kwargs):
         BookList.objects.filter(bookid=instance.bookid).update(collected=True)
         category.save()
         book.save()
-
-
-
