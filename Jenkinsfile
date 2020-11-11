@@ -15,7 +15,6 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-		sh 'cd djt'
                 sh 'python manage.py runserver'
             }
         }
